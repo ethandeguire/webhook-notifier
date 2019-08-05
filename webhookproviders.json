@@ -1,0 +1,18 @@
+[
+  {
+    "event_type_name": "X-Netlify-Event",
+    "provider_name": "Netlify",
+    "event_overrides": {
+      "deploy_building": "Deploy started",
+      "deploy_created": "Deploy finished",
+      "deploy_locked": "Deploy locked",
+      "deploy_unlocked": "Deploy unlocked",
+      "deploy_failed": "Deploy failed"
+    }
+  },
+  {
+    "event_type_name": "x-github-event",
+    "provider_name": "Github",
+    "event_overrides": []
+  }
+]
