@@ -10,13 +10,16 @@ Use Node.js and Ngrok to create a system notification service.
 
 # How to Use
 1. Run the app.
-    run
+    
+    run:
+    
     ```
     setup.bat
     ```
     
     or
     
+    ```
     npm run build [port #]
     ```
     
