@@ -49,8 +49,6 @@ app.listen(port, () => {
   console.log(`--Notification server listening on port ${port}`)
   console.log(`--Attempting to expose server on port ${port} to the internet using ngrok`)
 
-  console.log(configurations[0].event_overrides["deploy_building"])
-
   // expose port to internet with ngrok
   ngrok.connect({ addr: port }).then((url) => {
     console.log(`--ngrok connection succeeded`)
