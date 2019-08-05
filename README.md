@@ -12,8 +12,17 @@ Use Node.js and Ngrok to create a system notification service.
 1. Run the app.
 
     ```
-    node app.js [port]
+    npm run build [port #]
     ```
+    
+    or
+    
+    ```
+    npm install
+    node app.js [port #]
+    ```
+    
+    port #: the port for the local server to run on.
 
 2. For any webhook providers not already configured, edit the `webhookproviders.json` with a new provider.
 
