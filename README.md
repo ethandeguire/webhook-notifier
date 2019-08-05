@@ -2,17 +2,11 @@
 Use Node.js and Ngrok to create a system notification service.
 
 # Installation
-- [Ngrok](https://ngrok.com/download) must be installed
-- Express
+1. Clone this repo
 
-    ```
-    npm install express
-    ```
-- node-notifier
+2. Open windows CMD or Powershell to the cloned directory
 
-    ```
-    npm install node-notifier
-    ```
+3. `npm install`
 
 # How to Use
 1. Run the app.
