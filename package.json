@@ -1,0 +1,25 @@
+{
+  "name": "webhook-notifier",
+  "version": "1.0.0",
+  "description": "A windows notification driver from internet webhooks",
+  "main": "app.js",
+  "dependencies": {
+    "express": "^4.17.1",
+    "ngrok": "^3.2.4",
+    "node-notifier": "^5.4.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "build": "npm install && node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ethandeguire/webhook-notifier.git"
+  },
+  "author": "Ethan Deguire",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ethandeguire/webhook-notifier/issues"
+  },
+  "homepage": "https://github.com/ethandeguire/webhook-notifier#readme"
+}
