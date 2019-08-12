@@ -49,7 +49,9 @@ app.post('/', (req, res) => {
     }
   })
 
-  console.log(`--Incoming event: ${webhookProvider}: ${message} - ${sendNotification ? 'displaying' : 'not displaying'}`);
+  if (webhookProvider === 'error' && message === 'error') sendNotification = false
+
+  console.log(`--Incoming event: '${webhookProvider}': '${message}' - ${sendNotification ? 'displaying' : 'not displaying'}`);
 
   if (sendNotification) {
     notifier.notify({
