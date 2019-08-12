@@ -14,5 +14,10 @@
     "event_type_name": "x-github-event",
     "provider_name": "Github",
     "event_overrides": []
+  },
+  {
+    "event_type_name": "X-Sample-Event",
+    "provider_name": "Sample Event",
+    "event_overrides": []
   }
 ]
