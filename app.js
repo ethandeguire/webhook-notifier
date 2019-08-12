@@ -6,7 +6,7 @@ var express = require('express')
 var app = express()
 
 const args = process.argv.slice(2)
-args[0] = args[0] == 0 ? 2019 : args[0] 
+args[0] = args[0] == 0 ? 2019 : args[0]
 const port = args[0] || 2019
 if (port == 'default') port == 2019
 const NotifyUsername = args[1] || null
@@ -28,28 +28,38 @@ app.use(function (req, res, next) {
 app.post('/', (req, res) => {
   let webhookProvider = 'error', message = 'error'
 
+  let sendNotification = true
+
   configurations.forEach(configuration => {
     let headerValue = req.header(configuration.event_type_name)
     if (headerValue != undefined && headerValue != null && headerValue) {
+
       //set the provider to the one we have assigend for it
       webhookProvider = configuration.provider_name
 
       // get original message, see if we override it
       originalMessage = req.header(configuration.event_type_name)
       let override = configuration.event_overrides[originalMessage + ""]
+
+      // if the override is blank we dont want to send a notif
+      if (override === '') sendNotification = false
+
+      // 
       message = override ? override : originalMessage
     }
   })
 
-  console.log('--Incoming event: ', webhookProvider, message);
+  console.log(`--Incoming event: ${webhookProvider}: ${message} - ${sendNotification ? 'displaying' : 'not displaying'}`);
 
-  notifier.notify({
-    title: webhookProvider,
-    message: message
-  });
+  if (sendNotification) {
+    notifier.notify({
+      title: webhookProvider,
+      message: message
+    })
+  }
 
   res.send('Received the notification')
-});
+})
 
 app.listen(port, () => {
   console.log(`--Notification server listening on port ${port}`)
@@ -67,7 +77,7 @@ app.listen(port, () => {
         username: NotifyUsername,
         password: NotifyPassword,
         url: url
-    }
+      }
     })
       .then((response) => {
         console.log(`--Url updated in NotifyMe: ${NotifyUsername} - ${url}`);
