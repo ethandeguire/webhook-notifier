@@ -3,6 +3,7 @@ const ngrok = require('ngrok')
 const fs = require('fs')
 const axios = require('axios');
 var express = require('express')
+const os = require('os')
 var app = express()
 
 const args = process.argv.slice(2)
@@ -19,8 +20,8 @@ const configurations = JSON.parse(fs.readFileSync('webhookproviders.json', 'utf-
 app.use(express.static(__dirname))
 app.use(function (req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Methods", "PUT, POST, GET, DELETE, OPTIONS")
-  res.header("Access-Control-Allow-Headers", "X-Requested-With, content-type")
+  res.header("Access-Control-Allow-Methods", "*")
+  res.header("Access-Control-Allow-Headers", "*")
   res.header("Access-Control-Allow-Credentials", true)
   next()
 })
@@ -60,7 +61,14 @@ app.post('/', (req, res) => {
     })
   }
 
-  res.send('Received the notification')
+  res.send(JSON.stringify({
+    data: {
+      client_info: {
+        computer_name: os.hostname(),
+        os: os.platform()
+      }
+    }
+  }))
 })
 
 app.listen(port, () => {
@@ -78,7 +86,8 @@ app.listen(port, () => {
       data: {
         username: NotifyUsername,
         password: NotifyPassword,
-        url: url
+        url: url,
+        computer_name: os.hostname()
       }
     })
       .then((response) => {
